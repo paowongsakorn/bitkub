@@ -2,8 +2,9 @@
 my functions in bitkub.com
 
 ## get last price
-bitkub.getprice('product')
+bitkub.getprice('symbol')
 
 
-## Get list all open orders of the given symbol. ('symbol')
-open_orders = bitkub.my_open_orders('THB_XRP')
+## get my open orders
+### Get list all open orders of the given symbol.
+bitkub.my_open_orders('symbol')
