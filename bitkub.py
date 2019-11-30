@@ -19,7 +19,7 @@ def json_encode(data):
 
 def sign(data):
 	j = json_encode(data)
-	print('Signing payload: ' + j)
+	# print('Signing payload: ' + j)
 	h = hmac.new(API_SECRET, msg=j.encode(), digestmod=hashlib.sha256)
 	return h.hexdigest()
 
@@ -27,7 +27,7 @@ def sign(data):
 def timeserver():
     response = requests.get(API_HOST + '/api/servertime')
     ts = int(response.text)
-    print('Server time: ' + response.text)
+    # print('Server time: ' + response.text)
     return ts
 
 # get last price
@@ -60,4 +60,36 @@ def my_open_orders(symbol):
 	signature = sign(open_orders)
 	open_orders['sig'] = signature
 	r = requests.post(API_HOST + '/api/market/my-open-orders', headers=header, data=json_encode(open_orders))
+	return r
+
+def createbuy(symbol,amount,rate,ordertype):
+	data = {
+	'sym': symbol,
+	'amt': amount, # THB amount you want to spend
+	'rat': rate,
+	'typ': ordertype,
+	'ts': timeserver(),}
+
+	signature = sign(data)
+	data['sig'] = signature
+
+	#print('Payload with signature: ' + json_encode(data))
+	r = requests.post(API_HOST + '/api/market/place-bid', headers=header, data=json_encode(data))
+	print('Response: ' + r.text)
+	return r
+
+def createsell(symbol,amount,rate,ordertype):
+	data = {
+	'sym': symbol,
+	'amt': amount, # THB amount you want to spend
+	'rat': rate,
+	'typ': ordertype,
+	'ts': timeserver(),}
+
+	signature = sign(data)
+	data['sig'] = signature
+
+	#print('Payload with signature: ' + json_encode(data))
+	r = requests.post(API_HOST + '/api/market/place-ask', headers=header, data=json_encode(data))
+	print('Response: ' + r.text)
 	return r
