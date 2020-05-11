@@ -53,3 +53,13 @@ print(order)
 
 ```
 This will create a sell order.
+
+
+### Donate
+
+| Currency | Address | Deposit Tag |
+| ------ | ------ | ------ |
+| Bitcoin | 3Ne8jAQM6koKaNuSkZEJmWBGzNC1gy8NZM | 
+| Ripple | rpXTzCuXtjiPDFysxq8uNmtZBe9Xo97JbW | 1075605645
+| Stellar | GBS2RTBGEWBT7DJOH7CTA4PDVLIPONCPCIILJPPESWSHDIV4NFZJHRP3 | 1020775332
+| Binance | bnb1g7kg0yl50u5xj5kumga24uudc5204pzgxkgg4u | 1072588774
